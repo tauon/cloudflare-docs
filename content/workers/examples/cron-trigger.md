@@ -9,17 +9,30 @@ weight: 1001
 layout: example
 ---
 
+{{<tabs labels="js/sw | js/esm">}}
+{{<tab label="js/sw" default="true">}}
+
 ```js
 addEventListener('scheduled', event => {
   event.waitUntil(triggerEvent(event.scheduledTime));
 });
 
 async function triggerEvent(scheduledTime) {
-  // Fetch some data
-  // Update API
   console.log('cron processed');
 }
 ```
+{{</tab>}}
+{{<tab label="js/esm">}}
+
+```js
+export default {
+	async scheduled(controller, env, ctx) {
+		console.log('cron processed');
+	},
+};
+```
+{{</tab>}}
+{{</tabs>}}
 
 ## Setting Cron Triggers in Wrangler
 
